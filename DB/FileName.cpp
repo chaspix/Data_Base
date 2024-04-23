@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
+#include <iostream>
 #include <windows.h>
 #include <string.h>
 #define MAX 10
@@ -16,18 +17,18 @@ struct Footballer {
 
 int GetVibor() {
 	int vibor;
-	scanf("%d",&vibor);
+	std::cin>>vibor;
 	return vibor;
 }
 void ClearScreen() {
 	system("cls");
 }
 void ContinueProgramm() {
-	printf("\n\nНажмите Enter для продолжения....");
+	std::cout << "\n" << "\n" << "Нажмите Enter для продолжения....";
 	int c=0;
-	while ((c = getchar()) != '\n' && c != EOF) { 
-	} //очистка ввода
-	getchar(); //запрос символа
+	while ((c = getchar()) != '\n' && c != EOF) {
+	}
+	getchar(); 
 	ClearScreen();
 }
 void RussLang(void) {
@@ -57,89 +58,87 @@ int FindSlot(struct Footballer Footballers[]) {
 void AddFootballer(struct Footballer Footballers[]) {
 	int n = FindSlot(Footballers);
 	if (n == -1) {
-		printf("База данных заполнена.\n");
+		std::cout<<"База данных заполнена."<<"\n";
 		return;
 	}
 	
 	Footballer fb;
 	int c = 0;
-	printf("Введите номер футболиста: ");
-	scanf("%d",&fb.Number);
+	std::cout<<"\n"<<"Введите номер футболиста : ";
+	std::cin>>fb.Number;
 	while ((c = getchar()) != '\n' && c != EOF) {
 	}
-	printf("\nВведите фамилию: ");
+	std::cout<<"\n"<<"Введите фамилию : ";
 	fgets(fb.Surname,70,stdin);
 	char* newsurnameline = strrchr(fb.Surname,'\n'); //поиск последнего \n
 	if (newsurnameline) {
 		*newsurnameline = '\0';
 	}
-	printf("\nВведите имя: ");
+	std::cout<<"\n"<<"Введите имя : ";
 	fgets(fb.Name,70,stdin);
 	char* newnameline = strrchr(fb.Name,'\n');
 	if (newnameline) {
 		*newnameline = '\0';
 	}
-	printf("\nВведите позицию футболиста: ");
+	std::cout<<"\n"<<"Введите позицию футболиста : ";
 	fgets(fb.Role,70,stdin);
 	char* newroleline = strrchr(fb.Role, '\n');
 	if (newroleline) {
 		*newroleline = '\0';
 	}
-	printf("\nВведите национальность: ");
+	std::cout<<"\n"<<"Введите национальность : ";
 	fgets(fb.Nation,70,stdin);
 	char* newnationline = strrchr(fb.Nation, '\n');
 	if (newnationline) {
 		*newnationline = '\0';
 	}
-	printf("\nВведите возраст: ");
-	scanf("%d",&fb.Age);
+	std::cout<<"\n"<<"Введите возраст : ";
+	std::cin>>fb.Age;
 	while ((c = getchar()) != '\n' && c != EOF) {
 	}
-	printf("\nВведите футбольный клуб, в котором играет футболист: ");
+	std::cout<<"\n"<<"Введите футбольный клуб, в котором играет футболист : ";
 	fgets(fb.Club,70,stdin);
 	char* newclubline = strrchr(fb.Club, '\n');
 	if (newclubline) {
 		*newclubline = '\0';
 	}
-	printf("\nВведите стоимость футболиста на трансферном рынке: ");
-	scanf("%d",&fb.Price);
+	std::cout<<"\n"<<"Введите стоимость футболиста на трансферном рынке : ";
+	std::cin>>fb.Price;
 	while ((c = getchar()) != '\n' && c != EOF) {
 	}
 	Footballers[n] = fb;
-	printf("Футболист добавлен\n\n");
+	std::cout << "\n" << "Футболист добавлен" << "\n" << "\n";
 }
 void PrintDB(struct Footballer Footballers[]){
-	printf("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-	printf(" Номер | Фамилия              | Имя                  | Позиция                                  | Национальность       | Возраст | Клуб                           | Цена      |\n");
-	printf("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+	std::cout<<"-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"<<"\n";
+	std::cout<<" Номер | Фамилия              | Имя                  | Позиция                                  | Национальность       | Возраст | Клуб                           | Цена      |"<<"\n";
+	std::cout<<"-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"<<"\n";
 	for (int i = 0; i < MAX; i++) {
 		if (strlen(Footballers[i].Surname) != 0) {
 			printf(" %5d | %-20s | %-20s | %-40s | %-20s | %7d | %-30s | %9d |\n", Footballers[i].Number, Footballers[i].Surname, Footballers[i].Name, 
 				Footballers[i].Role, Footballers[i].Nation, Footballers[i].Age, Footballers[i].Club, Footballers[i].Price);
-			printf("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+			std::cout<<"-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"<<"\n";
 		}
 
 	}
 	ContinueProgramm();
 }
 void printmenu(void) {
-	printf("Введите номер действия, которое хотите использовать:\n\n");
-	printf("1. Ввод данных в пустую БД.\n");
-	printf("2. Вывод БД.\n");
-	printf("3. Добавление 1-ой строки.\n");
-	printf("4. Поиск по любому столбцу.\n");
-	printf("5. Удаление строки.\n");
-	printf("6. Сохранение БД в файл (.txt).\n");
-	printf("7. Выгрузка из файла.\n");
-	printf("8. Выход.\n");
+	std::cout<<"Введите номер действия, которое хотите использовать:"<<"\n"<<"\n";
+	std::cout<<"1. Ввод данных в пустую БД."<<"\n";
+	std::cout<<"2. Вывод БД."<<"\n";
+	std::cout<<"3. Добавление 1-ой строки."<<"\n";
+	std::cout<<"4. Поиск по любому столбцу."<<"\n";
+	std::cout<<"5. Удаление строки."<<"\n";
+	std::cout<<"6. Сохранение БД в файл (.txt)."<<"\n";
+	std::cout<<"7. Выгрузка из файла."<<"\n";
+	std::cout<<"8. Выход."<<"\n";
 }
 void DeleteRow(struct Footballer Footballers[]) {
 	int del;
-	printf("Введите номер футболиста для удаления: ");
-	scanf("%d", &del);
+	std::cout<<"Введите номер футболиста для удаления: ";
+	std::cin>>del;
 	int c = 0;
-	while ((c = getchar()) != '\n' && c != EOF) {
-	}
 	for (int i = 0; i < MAX; i++) {
 		if (Footballers[i].Number == del) {
 			Footballers[i].Number = 0;
@@ -150,32 +149,140 @@ void DeleteRow(struct Footballer Footballers[]) {
 			Footballers[i].Age = 0;
 			Footballers[i].Club[0] = '\0';
 			Footballers[i].Price = 0;
-			printf("Футболист под %d номером удалён.\n", del);
+			printf("Футболист под %d номером удалён",del);
 			return;
 		}
 	}
-	printf("Футболист под %d номером не найден.\n",del);
+	printf("Футболист под %d номером не найдем",del);
 }
-void SortColumns(struct Footballer Footballers[]) {
-	Footballer a[MAX];
-	for (int i = 0; i < MAX; i++) {
-		a[i] = Footballers[i];
+void ColumnMenu(void) {
+	std::cout << "Выберите по какому столбцу будет производиться поиск" << "\n";
+	std::cout << "1. Номер" << "\n";
+	std::cout << "2. Фамилия" << "\n";
+	std::cout << "3. Имя" << "\n";
+	std::cout << "4. Позиция" << "\n";
+	std::cout << "5. Национальность" << "\n";
+	std::cout << "6. Возраст" << "\n";
+	std::cout << "7. Футбольный клуб" << "\n";
+	std::cout << "8. Цена" << "\n";
+}
+void ColumnSearch(struct Footballer Footballers[]) {
+	ColumnMenu();
+	struct Footballer temp[MAX];
+	InitDB(temp);
+	int vibor = GetVibor();
+	ClearScreen();
+	switch (vibor) {
+	case 1:
+	{
+		std::cout << "Введите номер от 1 до 99" << "\n";
+		int NumberColumn = GetVibor();
+		for (int i = 0; i < MAX; i++) {
+			if (Footballers[i].Number == NumberColumn) {
+				temp[i] = Footballers[i];
+			}
+			
+		}
+		PrintDB(temp);
+		break;
 	}
-	for (int i = 0; i < MAX - 1; i++) {
-		for (int j = 0; j < MAX - i - 1; j++) {
-			if (a[j].Price > Footballers[j + 1].Price) {
-				Footballer temp = a[j];
-				a[j] = a[j + 1];
-				a[j + 1] = temp;
+	case 2:
+	{
+		std::cout << "Введите фамилию" << "\n";
+		char SurnameColumn[52];
+		std::cin >> SurnameColumn;
+		for (int i = 0; i < MAX; i++) {
+			if (strcmp(Footballers[i].Surname, SurnameColumn) == 0) {
+				temp[i] = Footballers[i];
 			}
 		}
+		PrintDB(temp);
+		break;
 	}
-	PrintDB(a);
+	case 3:
+	{
+		std::cout << "Введите имя" << "\n";
+		char NameColumn[52];
+		std::cin >> NameColumn;
+		for (int i = 0; i < MAX;i++) {
+			if (strcmp(Footballers[i].Name, NameColumn) == 0) {
+				temp[i] = Footballers[i];
+			}
+		}
+		PrintDB(temp);
+		break;
+	}
+	case 4:
+	{
+		std::cout << "Введите позицию" << "\n";
+		char RoleColumn[52];
+		std::cin >> RoleColumn;
+		for (int i = 0; i < MAX; i++) {
+			if (strcmp(Footballers[i].Role, RoleColumn) == 0) {
+				temp[i] = Footballers[i];
+			}
+		}
+		PrintDB(temp);
+		break;
+	}
+	case 5:
+	{
+		std::cout << "Введите национальность" << "\n";
+		char NationColumn[52];
+		std::cin >> NationColumn;
+		for (int i = 0; i < MAX; i++) {
+			if (strcmp(Footballers[i].Nation, NationColumn) == 0) {
+				temp[i] = Footballers[i];
+			}
+		}
+		PrintDB(temp);
+		break;
+	}
+	case 6:
+	{
+		std::cout << "Введите возраст" << "\n";
+		int AgeColumn = GetVibor();
+		for (int i = 0; i < MAX; i++) {
+			if (Footballers[i].Age == AgeColumn) {
+				temp[i] = Footballers[i];
+			}
+		}
+		PrintDB(temp);
+		break;
+	}
+	case 7:
+	{
+		std::cout << "Введите футбольный клуб" << "\n";
+		char ClubColumn[52];
+		std::cin >> ClubColumn;
+		for (int i = 0; i < MAX;i++) {
+			if (strcmp(Footballers[i].Club, ClubColumn)) {
+				temp[i] = Footballers[i];
+			}
+		}
+		PrintDB(temp);
+		break;
+	}
+	case 8:
+	{
+		std::cout << "Введите цену" << "\n";
+		int PriceColumn = GetVibor();
+		for (int i = 0; i < MAX;i++) {
+			if (Footballers[i].Price == PriceColumn) {
+				temp[i] = Footballers[i];
+			}
+		}
+		PrintDB(temp);
+		break;
+	}
+	default:
+		break;
+	}
 }
 void SaveDB(struct Footballer Footballers[]) {
 	FILE* file = fopen("Футболисты.txt","w");
 	if (file == NULL) {
-		printf("Не удалось открыть файл");
+		std::cout<<"Не удалось открыть файл";
 		return;
 	}
 	for (int i = 0; i < MAX; i++) {
@@ -184,15 +291,15 @@ void SaveDB(struct Footballer Footballers[]) {
 		}
 	}
 	fclose(file);
-	printf("База данных сохранена в Футболисты.txt");
+	std::cout<<"\n"<<"База данных сохранена в Футболисты.txt"<<"\n";
 }
 void LoadDB(struct Footballer Footballers[]) {
 	FILE* file = fopen("Футболисты.txt","r");
 	if (file==NULL){
-		printf("Не удалось открыть файл для чтения\n");
+	std::cout<<"Не удалось открыть файл для чтения"<<"\n";
 		return;
 	}
-	printf("Загрузка базы данных из Футболисты.txt приведёт к полной очистке текущей базы данных. Уверены, что хотите продолжить?(1 - да, 0 - нет)");
+	std::cout<<"Загрузка базы данных из Футболисты.txt приведёт к полной очистке текущей базы данных. Уверены, что хотите продолжить?(1 - да, 0 - нет)"<<"\n";
 	if (GetVibor()!=1) {
 		fclose(file);
 		return;
@@ -202,7 +309,7 @@ void LoadDB(struct Footballer Footballers[]) {
 		i++;
 	}
 	fclose(file);
-	printf("База данных успешно сохранена в Футболисты.txt");
+	std::cout<<"\n"<<"База данных успешно сохранена в Футболисты.txt"<<"\n";
 }
 void main() {
 	struct Footballer Footballers[MAX];
@@ -214,17 +321,17 @@ void main() {
 		ClearScreen();
 		switch (vibor) {
 		case 1:
-			printf("Вы хотите очистить БД?(1 - да, 0 - нет)\n)");
+			std::cout<<"Вы хотите очистить БД?(1 - да, 0 - нет)" << "\n" << "\n";
 			if (GetVibor() != 1) {
 				ContinueProgramm();
 				continue;
 			}
 			else {
 				InitDB(Footballers);
-				printf("База данных готова к выводу.\n");
+				std::cout<< "\n" << "База данных готова к выводу." << "\n";
 				while (1) {
 					AddFootballer(Footballers);
-					printf("Добавить футболиста? (1 - да, 0 - нет):\n");
+					std::cout<<"Добавить футболиста? (1 - да, 0 - нет):" << "\n";
 					if (GetVibor() != 1) 
 						break;
 				}
@@ -239,7 +346,7 @@ void main() {
 			ContinueProgramm();
 			break;
 		case 4:
-			SortColumns(Footballers);
+			ColumnSearch(Footballers);
 			break;
 		case 5:
 			DeleteRow(Footballers);
@@ -254,10 +361,10 @@ void main() {
 			ContinueProgramm();
 			break;
 		case 8:
-			printf("Выход из программы.\n");
+			std::cout<<"Выход из программы." << "\n";
 			exit(0);
 		default:
-			printf("Вы ввели значение, не входящее в промежуток от 1-8, попробуйте ещё раз");
+			std::cout<<"Вы ввели значение, не входящее в промежуток от 1-8, попробуйте ещё раз";
 		}
 
 	}
